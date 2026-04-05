@@ -1,0 +1,163 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
+import javax.swing.*;
+
+
+public class SignUpPage extends JFrame{
+    JTextField userName,email;
+    JPasswordField password,confirmPassword;
+    JComboBox city;
+    JLabel iconLabel,userLabel,passwordLabel,confirmPasswordLabel,cityLabel,emailLabel,errorLabel;
+    JPanel panel1,panel2,panel3,panel4,panel5;
+    JButton signUp,reset;
+    String[] cityList=new String[]{"Jeddah","Makkah"};
+    final int WINDOW_WIDTH = 250; 
+    final int WINDOW_HEIGHT = 550;
+    
+    public SignUpPage(){
+        setTitle("SignUp Page");
+        setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        buildPage();
+        
+        add(panel1,BorderLayout.NORTH);
+        add(panel2,BorderLayout.CENTER);
+        add(panel5,BorderLayout.SOUTH);
+        setLocationRelativeTo(null); 
+    }
+    public void buildPage(){
+        errorLabel=new JLabel("");
+        errorLabel.setForeground(Color.red);
+        
+        panel1=new JPanel();
+        panel2=new JPanel();
+        panel3=new JPanel();
+        panel4=new JPanel();
+        panel5=new JPanel();
+        
+        panel5.setLayout(new BorderLayout());
+        
+        userName=new JTextField(20);
+        email=new JTextField(20);
+        password=new JPasswordField(20);
+        confirmPassword=new JPasswordField(20);
+        city=new JComboBox(cityList);
+        iconLabel=new JLabel();
+        
+        ImageIcon logo = new ImageIcon("MovieLogo.jpg");
+        iconLabel.setIcon(logo);
+        userLabel=new JLabel("Username: ");
+        passwordLabel=new JLabel("Password: ");
+        confirmPasswordLabel=new JLabel("Confirm Password: ");
+        cityLabel=new JLabel("City: ");
+        emailLabel=new JLabel("Email: ");
+        signUp=new JButton("SignUp");
+        signUp.setForeground(Color.WHITE);
+        signUp.setBackground(Color.BLACK);
+        signUp.addActionListener(new Home());
+        reset=new JButton("Reset");
+        reset.setForeground(Color.WHITE);
+        reset.setBackground(Color.DARK_GRAY);
+        reset.addActionListener(new Rest());
+        panel1.add(iconLabel);                     
+        panel2.add(userLabel);
+        panel2.add(userName);
+        panel2.add(emailLabel);
+        panel2.add(email);
+        panel2.add(passwordLabel);
+        panel2.add(password);
+        panel2.add(confirmPasswordLabel);
+        panel2.add(confirmPassword);
+        panel2.add(cityLabel);
+        panel2.add(city);
+        panel3.add(signUp);
+        panel3.add(reset);
+        panel4.add(errorLabel);
+        panel5.add(panel3,BorderLayout.NORTH);
+        panel5.add(panel4,BorderLayout.CENTER);
+     }
+
+    private  class Rest implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            userName.setText("");
+            password.setText("");
+            confirmPassword.setText("");
+            email.setText("");
+            city.setSelectedIndex(0);
+        
+        }
+    }
+
+    private  class Home implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            
+          String user_name=userName.getText();
+          String user_email=email.getText();
+          String user_password=password.getText();
+          String user_confirm_password=confirmPassword.getText();
+          String user_city=(String) city.getSelectedItem();
+          
+           
+          if(user_name.isEmpty()){
+              errorLabel.setText("Please enter username ");
+          }
+          else if(user_email.isEmpty()){
+               errorLabel.setText("Please enter Email ");
+          }
+          else if(user_password.isEmpty()){
+               errorLabel.setText("Please enter password");
+          }
+          else if(user_confirm_password.isEmpty()){
+               errorLabel.setText("Please enter confirm password");
+          }
+          else if(!user_password.equals(user_confirm_password)){
+              errorLabel.setText("Password and Confirm password must be same");
+          }
+          else if(user_password.length()<8){
+              errorLabel.setText("Password must be at least 8 character");
+          }
+          else{
+              try {
+                   File file = new File("userInfo.txt");
+                   Scanner inputFile;
+                   ArrayList<String> emails=new ArrayList<>();
+                   inputFile = new Scanner(file);
+                  while(inputFile.hasNext()){
+                      inputFile.next();
+                      String email=inputFile.next();
+                      emails.add(email);
+                      
+                      inputFile.nextLine();
+                  }
+                  inputFile.close();
+                  if(emails.contains(user_email)){
+                      errorLabel.setText("This email already registered");
+                  }else{
+                  FileWriter fwriter = new FileWriter("userInfo.txt", true);
+                  PrintWriter outputFile = new PrintWriter(fwriter);
+                  outputFile.println(user_name+" "+user_email+" "+user_password+" "+user_city);
+                  fwriter.close();
+                   Login login=new Login();
+                   login.setVisible(true);
+                   dispose();
+                  }
+                   
+              } catch (IOException ex) {
+                  System.out.println("Error in File");
+              }
+              
+          } 
+        }
+    }
+}

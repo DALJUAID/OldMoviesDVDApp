@@ -1,0 +1,181 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import javax.swing.*;
+
+public class Report extends JFrame{
+    JLabel iconLabel,nameLabel,emailLabel,phoneLabel,movieTypeLabel,chosenMovieLabel,paymethodLabel,priceLabel,TranslationLabel;
+    JTextField name,email,phone,movieType,paymethod,Price,Translation,chosenMovie;
+    JButton exit;
+    JPanel panel1,panel2,panel3,panel4,panel5,panel6,panel7,panel8,panel9,panel10,panel11,panel12,panel13,panel14,panel15,panel16,panel17,panel18,panel19;
+    final int WINDOW_WIDTH = 500; 
+    final int WINDOW_HEIGHT = 500;
+    
+    public Report(int ID, String email, String user_name) throws FileNotFoundException{
+        setTitle("Report Page");
+        setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        buildPage();
+        add(panel1,BorderLayout.CENTER);
+        add(panel2,BorderLayout.SOUTH);
+        add(panel3,BorderLayout.NORTH);
+        DisplayData(ID,email,user_name);
+        setLocationRelativeTo(null); 
+        setVisible(true);   
+    }
+
+    private void buildPage() {
+        panel1=new JPanel();
+        panel1.setLayout(new GridLayout(8,2,2,2));
+        panel2=new JPanel();
+        panel3=new JPanel();
+        panel4=new JPanel();
+        panel5=new JPanel();
+        panel6=new JPanel();
+        panel7=new JPanel();
+        panel8=new JPanel();
+        panel9=new JPanel();
+        panel10=new JPanel();
+        panel11=new JPanel();
+        panel12=new JPanel();
+        panel13=new JPanel();
+        panel14=new JPanel();
+        panel15=new JPanel();
+        panel16=new JPanel();
+        panel17=new JPanel();
+        panel18=new JPanel();
+        panel19=new JPanel();
+        
+        iconLabel=new JLabel();
+        ImageIcon logo = new ImageIcon("MovieLogo.jpg");
+        iconLabel.setIcon(logo);
+        
+       nameLabel=new JLabel("Name: ");
+       name=new JTextField(20);
+       emailLabel=new JLabel("Email: ");
+       email=new JTextField(20);
+       phoneLabel=new JLabel("Phone Number: ");
+       phone=new JTextField(20);
+       movieTypeLabel=new JLabel("Movie Type: ");
+       movieType=new JTextField(20);
+       chosenMovieLabel=new JLabel("Number Of Picture: ");
+       chosenMovie=new JTextField(20);
+       TranslationLabel=new JLabel("Translation Language: ");
+       Translation=new JTextField(20);
+       priceLabel=new JLabel("Price: ");
+       Price=new JTextField(20);
+       paymethodLabel=new JLabel("Pay Method: ");
+       paymethod=new JTextField(20);
+       
+       name.setEditable(false);
+       email.setEditable(false);
+       phone.setEditable(false);
+       movieType.setEditable(false);
+       chosenMovie.setEditable(false);
+       Translation.setEditable(false);
+       Price.setEditable(false);
+       paymethod.setEditable(false);
+       
+       panel4.add(nameLabel);
+       panel5.add(emailLabel);
+       panel6.add(phoneLabel);
+       panel7.add(movieTypeLabel);
+       panel8.add(chosenMovieLabel);
+       panel9.add(TranslationLabel);     
+       panel10.add(priceLabel);     
+       panel11.add(paymethodLabel);
+       panel12.add(name,FlowLayout.LEFT);
+       panel13.add(email,FlowLayout.LEFT);
+       panel14.add(phone,FlowLayout.LEFT);
+       panel15.add(movieType,FlowLayout.LEFT);
+       panel16.add(chosenMovie,FlowLayout.LEFT);
+       panel17.add(Translation,FlowLayout.LEFT);
+       panel18.add(Price,FlowLayout.LEFT);
+       panel19.add(paymethod,FlowLayout.LEFT);
+       
+       panel1.add(panel4);
+       panel1.add(panel12);
+       panel1.add(panel5);
+       panel1.add(panel13);
+       panel1.add(panel6);
+       panel1.add(panel14);
+       panel1.add(panel7);
+       panel1.add(panel15);
+       panel1.add(panel8);
+       panel1.add(panel16); 
+       panel1.add(panel9);
+       panel1.add(panel17);
+       panel1.add(panel10);
+       panel1.add(panel18); 
+       panel1.add(panel11);
+       panel1.add(panel19); 
+       
+       exit=new JButton("Exit");
+       exit.setForeground(Color.WHITE);
+       exit.setBackground(Color.BLACK);
+       exit.addActionListener(new CloseClass());
+       panel2.add(exit);
+       panel3.add(iconLabel);
+    }
+
+    private void DisplayData(int ID, String user_email, String user_name) throws FileNotFoundException {
+        File file = new File("Buy.txt");
+            Scanner inputFile;
+            int price = 1;
+            String user_phone="",chosen_Movie="",movie_Type="",translation="",pay_method="";
+            inputFile = new Scanner(file);
+            while(inputFile.hasNext()){
+                int id=inputFile.nextInt();
+                if(ID==id){
+                    inputFile.next();
+                    user_phone=inputFile.next();
+                    movie_Type=inputFile.next();
+                    chosen_Movie=inputFile.next();
+                    translation=inputFile.next();
+                    pay_method=inputFile.next();
+                    break;  
+                }
+                inputFile.nextLine();
+            }
+            inputFile.close();
+            
+            file = new File("BuyPrice.txt");
+            inputFile = new Scanner(file);
+            while(inputFile.hasNext()){
+                String movie_type=inputFile.next();
+                String chosen_Movie_file=inputFile.next();
+                if(movie_Type.equals(movie_type) &&chosen_Movie.equals(chosen_Movie_file)){
+                   price=inputFile.nextInt();
+                    break;
+                }
+              inputFile.nextLine();
+            }
+            inputFile.close();
+            name.setText(user_name);
+            email.setText(user_email);
+            phone.setText(user_phone);
+            movieType.setText(movie_Type);
+            chosenMovie.setText(chosen_Movie);
+            Translation.setText(translation);
+            paymethod.setText(pay_method);
+            Price.setText(String.valueOf(price));
+    
+    }
+
+    private static class CloseClass implements ActionListener {
+
+        public CloseClass() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           System.exit(0); 
+        }
+   }
+}

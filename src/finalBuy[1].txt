@@ -1,0 +1,161 @@
+import java.awt.*;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import javax.swing.*;
+
+
+public class Buy extends JFrame{
+    JTextField phone;
+    JButton Done;
+    JComboBox chosenMovie,movieType,Translation;
+    JLabel chosenMovieLabel,phoneLabel,title,movieTypeLabel,errorLabel,TranslationLabel,paymethodLabel;
+    JPanel panel1,panel2,panel3,panel4,panel5,panel6,panel7,panel8;
+    JRadioButton cash,creditCard;
+    ButtonGroup type;
+    
+    
+    
+    String[] movieTypes=new String[]{"Romantic","Horror","Comedy","Action","Cartoon","Arabic" };
+    String[] chosenMovies=new String[]{"Picture1","Picture2","Picture3","Picture4","Picture5"};
+    String[] translation=new String[]{"English","Arabic"};
+
+    final int WINDOW_WIDTH = 300; 
+    final int WINDOW_HEIGHT = 330;
+    String email,user_name;
+    
+    public Buy(String email,String user_name){
+         setLayout(new FlowLayout());
+        this.email=email;
+        this.user_name=user_name;
+        setTitle("Buy Page");
+        setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        buildPage();
+   
+      add(panel1);
+      add(panel2);
+      add(panel3);
+      add(panel4);
+      add(panel5);
+      add(panel6);
+      add(panel7);
+      add(panel8);
+        
+        setLocationRelativeTo(null); 
+        setVisible(true);
+    }
+   
+    private void buildPage() {
+        errorLabel=new JLabel("");
+        errorLabel.setForeground(Color.red);
+        chosenMovieLabel=new JLabel("Chosen Movie : ");
+        movieTypeLabel=new JLabel("Movie Type : ");
+        paymethodLabel=new JLabel("Payment Methode");
+        TranslationLabel=new JLabel("Translation : ");
+        phoneLabel=new JLabel("Phone number : ");
+        title=new JLabel("Buy Information ");
+        title.setForeground(Color.red);
+        chosenMovie=new JComboBox(chosenMovies);
+        movieType=new JComboBox(movieTypes);
+        Translation=new JComboBox(translation);
+        Done=new JButton("          Done          ");
+        Done.setForeground(Color.WHITE);
+        Done.setBackground(Color.BLACK);
+        Done.addActionListener(new DoneBuy());
+        
+     
+        phone=new JTextField(15);
+        cash=new JRadioButton("Cash");
+        creditCard=new JRadioButton("Credit Card");
+        type=new ButtonGroup();
+        type.add(cash);
+        type.add(creditCard);
+        
+        
+        panel1=new JPanel();
+        panel2=new JPanel();
+        panel3=new JPanel();
+        panel4=new JPanel();
+        panel5=new JPanel();
+        panel6=new JPanel();
+        panel7=new JPanel();
+        panel8=new JPanel();
+        
+        
+        panel1.add(title);
+        panel2.add(phoneLabel);
+        panel2.add(phone);
+        panel3.add(movieTypeLabel);
+        panel3.add(movieType);
+        panel4.add(chosenMovieLabel);
+        panel4.add(chosenMovie);
+        panel5.add(TranslationLabel);
+        panel5.add(Translation);
+        panel6.add(paymethodLabel);
+        panel6.add(cash);
+        panel6.add(creditCard);
+        
+        panel7.add(Done);
+        panel8.add(errorLabel);
+        
+        
+        
+    }
+    
+   
+    private  class DoneBuy implements ActionListener {
+
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String type;
+            String user_phone=phone.getText();
+            String movie_Type=(String)movieType.getSelectedItem();
+            String chosen_Movie=(String)chosenMovie.getSelectedItem();
+            String Translation_=(String)Translation.getSelectedItem();
+           
+            if(cash.isSelected()){
+                type="Cash";
+            }else{
+                type="Credit Card";
+            }
+            
+            if(user_phone.isEmpty()){
+                errorLabel.setText("Phone number required");
+            }
+            else if(user_phone.length()!=10){
+                errorLabel.setText("Wrong phone number");
+            }
+            else{
+                FileWriter fwriter;
+               try {
+                    fwriter = new FileWriter("Buy.txt", true);
+                     PrintWriter outputFile = new PrintWriter(fwriter);
+                     
+                     int BuyID=10+((int)(Math.random()*1000000));
+                     outputFile.print(BuyID+" ");
+                     outputFile.print(email+" ");
+                     outputFile.print(user_phone+" ");
+                     outputFile.print(movieType+" ");
+                     outputFile.print(chosenMovie+" ");
+                     outputFile.print(type+" ");
+                     outputFile.println(type);
+                     fwriter.close();
+                     Report report=new Report(BuyID,email,user_name);
+                     report.setVisible(true);
+                     dispose();
+                } catch (IOException ex) {
+                    System.out.println("Error in file");
+                }
+               
+            }
+        
+        }
+    }
+}
+ 

@@ -1,0 +1,152 @@
+import java.util.Scanner;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+
+public final class Login extends JFrame{
+    
+    JLabel iconLabel,signUpLabel,userLabel,passwordLabel,errorLabel;
+    JTextField userEmail;
+    JPasswordField password;
+    JButton login,signUp;
+    JPanel panel1,panel2,panel3,panel4,panel5;
+
+    final int WINDOW_WIDTH = 300; 
+    final int WINDOW_HEIGHT = 450;
+    public Login(){
+        
+        setTitle("Login Page");
+        setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       
+        buildPage();
+     
+        add(panel2,BorderLayout.NORTH);
+        add(panel1,BorderLayout.CENTER);
+       
+        setLocationRelativeTo(null); 
+        setVisible(true);
+        
+    }
+    
+    public void buildPage(){
+        
+        panel1=new JPanel();
+        panel2=new JPanel();
+        panel3=new JPanel();
+        panel3.setLayout(new BorderLayout());
+        panel4=new JPanel();
+        panel5=new JPanel();
+        
+        errorLabel=new JLabel();
+        errorLabel.setForeground(Color.red);
+        panel5.add(errorLabel);
+        
+        
+        iconLabel=new JLabel();
+        ImageIcon logo = new ImageIcon("MovieLogo.jpg");
+        iconLabel.setIcon(logo);
+        userLabel=new JLabel("Email: ");
+        passwordLabel=new JLabel("Password: ");
+        
+        userEmail=new JTextField(20);
+        password=new JPasswordField(20);
+        
+        signUpLabel=new JLabel("Don't have acount? ");
+        signUpLabel.setForeground(Color.GRAY);
+        
+        signUp=new JButton("Sign Up!");
+        signUp.setForeground(Color.WHITE);
+        signUp.setBackground(Color.DARK_GRAY);
+        signUp.addActionListener(new SignUp());
+        login=new JButton("Login");
+        login.addActionListener(new Home());
+        login.setForeground(Color.WHITE);
+        login.setBackground(Color.BLACK);
+        
+        
+        panel1.add(userLabel);
+        panel1.add(userEmail);
+        panel1.add(passwordLabel);
+        panel1.add(password);
+        
+        panel4.add(signUpLabel);
+        panel4.add(signUp);
+        
+        panel3.add(login,BorderLayout.NORTH);
+        panel3.add(panel4,BorderLayout.CENTER);
+        panel3.add(panel5,BorderLayout.SOUTH);
+        
+        panel1.add(panel3);
+        panel2.add(iconLabel);
+        
+       
+    }
+
+    
+    private class SignUp implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          SignUpPage signUp=new SignUpPage();
+          signUp.setVisible(true);
+          dispose();
+        }
+    }
+    private class Home implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String user_email=userEmail.getText();
+            String user_password=password.getText();
+            
+            if(user_email.isEmpty()){
+                errorLabel.setText("Please enter email ");
+            }
+            else if(user_password.isEmpty()){
+                errorLabel.setText("Please enter password ");
+            }
+            else{
+                String name="";
+                    try {
+                        File file = new File("userInfo.txt");
+                           Scanner inputFile;
+                         boolean flag=false;
+                        inputFile = new Scanner(file);
+                         while(inputFile.hasNext()){
+                              name=inputFile.next();
+                              String email=inputFile.next();
+                              if(email.equals(user_email)){
+                                  String pass=inputFile.next();
+                                  if(user_password.equals(pass)){
+                                      flag=true;
+                                      break;
+                                  }
+                              }
+
+
+                              inputFile.nextLine();
+                          }
+
+                         if(flag){
+                              HomePage home=new HomePage(name,user_email);
+                              home.setVisible(true);
+                              dispose();
+                         }else
+                             errorLabel.setText("Wrong email or password");
+                         
+                    
+            } catch (FileNotFoundException ex) {
+                System.out.println("Error in file");
+            }
+                 
+            }
+        }
+    }
+    public static void main(String[] args) {
+        Login login1 = new Login();
+    }
+    
+}

@@ -1,0 +1,33 @@
+245893 D@ 1234567890 [Ljava.lang.String;@8e11ce9 [Ljava.lang.String;@74eb836a Credit Card Credit Card
+399647 D@ 1234567890 [Ljava.lang.String;@8e11ce9 [Ljava.lang.String;@74eb836a Credit Card Credit Card
+374515 D@ 1234567890 [Romantic, Horror, Comedy, Action, Cartoon, Arabic] [Picture1, Picture2, Picture3, Picture4, Picture5] Credit Card Credit Card
+106234 D@ 1234567890 [Romantic, Horror, Comedy, Action, Cartoon, Arabic] [Picture1, Picture2, Picture3, Picture4, Picture5] Cash Cash
+856154 D@ 1234567890 [Romantic, Horror, Comedy, Action, Cartoon, Arabic] [Picture1, Picture2, Picture3, Picture4, Picture5] Cash Cash
+110 D@ 1234567890 [Romantic, Horror, Comedy, Action, Cartoon, Arabic] [Picture1, Picture2, Picture3, Picture4, Picture5] Cash Cash
+922596 D@ 1234567890 [Romantic, Horror, Comedy, Action, Cartoon, Arabic] [Picture1, Picture2, Picture3, Picture4, Picture5] Cash Cash
+704069 D@ 1234567890 [Romantic, Horror, Comedy, Action, Cartoon, Arabic] [Picture1, Picture2, Picture3, Picture4, Picture5] Credit Card Credit Card
+364728 D@ 1234567890 [Romantic, Horror, Comedy, Action, Cartoon, Arabic] [Picture1, Picture2, Picture3, Picture4, Picture5] Cash Cash
+400377 D@ 1234567890 [Romantic, Horror, Comedy, Action, Cartoon, Arabic] [Picture1, Picture2, Picture3, Picture4, Picture5] Cash Cash
+851869 D@ 1234567890 [Romantic, Horror, Comedy, Action, Cartoon, Arabic] [Picture1, Picture2, Picture3, Picture4, Picture5] Cash Cash
+190812 D@ 1234567890 [Romantic, Horror, Comedy, Action, Cartoon, Arabic] [Picture1, Picture2, Picture3, Picture4, Picture5] Credit Card Credit Card
+42042 D@ 1234567980 Romantic Picture1 Credit Card
+946978 D@ 1234567890 Romantic Picture1 Credit Card
+985198 D@ 1234567890 Romantic Picture1 Credit Card
+751080 D@ 1234567890 Romantic Picture1 Credit Card
+725838 D@ 1234567890 Romantic Picture1 Credit Card
+968645 D@ 1234567890 Romantic Picture1 Credit Card
+828593 D@ 1234567980 Romantic Picture1 Credit Card
+405332 D@ 1234567890 Romantic Picture1 Credit Card
+189651 D@ 1234567890 Romantic Picture1 Credit Card
+452498 D@ 1234567890 Romantic Picture1 Credit Card
+446145 D@ 1234567890 Romantic Picture1 Credit Card
+290909 D@ 1234567890 Romantic Picture1 Credit Card
+443985 D@ 1234567890 Romantic Picture1 Credit Card
+403779 D@ 1234567890 Romantic Picture1 Credit Card
+572851 D@ 1234567890 Romantic Picture1 Credit Card
+280832 D@ 1234567890 Horror Picture2 Credit Card
+499692 D@ 1234567890 Romantic Picture1 Credit Card
+954938 D@ 1234567890 javax.swing.JComboBox[,82,5,82x25,layout=javax.swing.plaf.metal.MetalComboBoxUI$MetalComboBoxLayoutManager,alignmentX=0.0,alignmentY=0.0,border=,flags=328,maximumSize=,minimumSize=,preferredSize=,isEditable=false,lightWeightPopupEnabled=true,maximumRowCount=8,selectedItemReminder=Horror] javax.swing.JComboBox[,98,5,76x25,layout=javax.swing.plaf.metal.MetalComboBoxUI$MetalComboBoxLayoutManager,alignmentX=0.0,alignmentY=0.0,border=,flags=328,maximumSize=,minimumSize=,preferredSize=,isEditable=false,lightWeightPopupEnabled=true,maximumRowCount=8,selectedItemReminder=Picture2] Cash Cash
+644099 D@ 1234567890 javax.swing.JComboBox[,82,5,82x25,layout=javax.swing.plaf.metal.MetalComboBoxUI$MetalComboBoxLayoutManager,alignmentX=0.0,alignmentY=0.0,border=,flags=328,maximumSize=,minimumSize=,preferredSize=,isEditable=false,lightWeightPopupEnabled=true,maximumRowCount=8,selectedItemReminder=Horror] javax.swing.JComboBox[,98,5,76x25,layout=javax.swing.plaf.metal.MetalComboBoxUI$MetalComboBoxLayoutManager,alignmentX=0.0,alignmentY=0.0,border=,flags=328,maximumSize=,minimumSize=,preferredSize=,isEditable=false,lightWeightPopupEnabled=true,maximumRowCount=8,selectedItemReminder=Picture2] Credit Card Credit Card
+905360 D@ 1234567890 javax.swing.JComboBox[,82,5,82x25,layout=javax.swing.plaf.metal.MetalComboBoxUI$MetalComboBoxLayoutManager,alignmentX=0.0,alignmentY=0.0,border=,flags=328,maximumSize=,minimumSize=,preferredSize=,isEditable=false,lightWeightPopupEnabled=true,maximumRowCount=8,selectedItemReminder=Horror] javax.swing.JComboBox[,98,5,76x25,layout=javax.swing.plaf.metal.MetalComboBoxUI$MetalComboBoxLayoutManager,alignmentX=0.0,alignmentY=0.0,border=,flags=328,maximumSize=,minimumSize=,preferredSize=,isEditable=false,lightWeightPopupEnabled=true,maximumRowCount=8,selectedItemReminder=Picture2] Credit Card Credit Card
+419125 D@ 1234567890 javax.swing.JComboBox[,82,5,82x25,layout=javax.swing.plaf.metal.MetalComboBoxUI$MetalComboBoxLayoutManager,alignmentX=0.0,alignmentY=0.0,border=,flags=328,maximumSize=,minimumSize=,preferredSize=,isEditable=false,lightWeightPopupEnabled=true,maximumRowCount=8,selectedItemReminder=Horror] javax.swing.JComboBox[,98,5,76x25,layout=javax.swing.plaf.metal.MetalComboBoxUI$MetalComboBoxLayoutManager,alignmentX=0.0,alignmentY=0.0,border=,flags=328,maximumSize=,minimumSize=,preferredSize=,isEditable=false,lightWeightPopupEnabled=true,maximumRowCount=8,selectedItemReminder=Picture2] Credit Card Credit Card

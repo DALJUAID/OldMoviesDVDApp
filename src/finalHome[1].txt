@@ -1,0 +1,132 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import javax.swing.*;
+import moviepro.Display;
+import moviepro.Buy;
+
+public class HomePage extends JFrame{
+     private JMenuBar menuBar; 
+     private JMenu fileMenu; 
+     private JMenu MovieTypeMenu; 
+     private JMenuItem exitItem; 
+     private JMenuItem buy;
+     private JMenuItem RomanticItem; 
+     private JMenuItem HorrorItem; 
+     private JMenuItem ComedyItem; 
+     private JMenuItem ActionItem; 
+     private JMenuItem CartoonItem; 
+     private JMenuItem ArabicItem; 
+     private JLabel label1;
+     final int WINDOW_WIDTH = 460; 
+     final int WINDOW_HEIGHT = 580;
+     String email;
+     String user_name;
+     public HomePage(String username,String email){
+        this.email=email;
+        this.user_name=username;
+        setTitle("Home Page (Welcome "+username+")");
+        setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       
+        buildPage();
+        add(label1,BorderLayout.CENTER);
+        setJMenuBar(menuBar);
+        setLocationRelativeTo(null); 
+        setVisible(true);
+        
+    }
+    
+    private void buildPage() {
+        label1=new JLabel();
+        menuBar = new JMenuBar();
+        
+        exitItem = new JMenuItem("Exit");
+        exitItem.setMnemonic(KeyEvent.VK_X);
+        exitItem.addActionListener(new ExitListener());
+        buy = new JMenuItem("Buy ");
+        buy.setMnemonic(KeyEvent.VK_R);
+        buy.addActionListener(new BuyPage());
+        fileMenu = new JMenu("File");
+        fileMenu.setMnemonic(KeyEvent.VK_F);
+        fileMenu.add(buy);
+        fileMenu.add(exitItem);
+        
+        RomanticItem= new JMenuItem("Romantic");
+        RomanticItem.setMnemonic(KeyEvent.VK_B);
+        RomanticItem.addActionListener(new disPlay());
+        
+        HorrorItem= new JMenuItem("Horror");
+        HorrorItem.setMnemonic(KeyEvent.VK_M);
+        HorrorItem.addActionListener(new disPlay());
+        
+        ComedyItem=new JMenuItem("Comedy");
+        ComedyItem.setMnemonic(KeyEvent.VK_T);
+        ComedyItem.addActionListener(new disPlay());
+        
+        ActionItem= new JMenuItem("Action");
+        ActionItem.setMnemonic(KeyEvent.VK_B);
+        ActionItem.addActionListener(new disPlay());
+        
+        CartoonItem= new JMenuItem("Cartoon");
+        CartoonItem.setMnemonic(KeyEvent.VK_M);
+        CartoonItem.addActionListener(new disPlay());
+        
+        ArabicItem=new JMenuItem("Arabic");
+        ArabicItem.setMnemonic(KeyEvent.VK_T);
+        ArabicItem.addActionListener(new disPlay());
+        
+        MovieTypeMenu = new JMenu("Movie Type");
+        MovieTypeMenu.setMnemonic(KeyEvent.VK_C);
+        MovieTypeMenu.add(RomanticItem);
+        MovieTypeMenu.add(HorrorItem);
+        MovieTypeMenu.add(ComedyItem);
+        MovieTypeMenu.add(ActionItem);
+        MovieTypeMenu.add(CartoonItem);
+        MovieTypeMenu.add(ArabicItem);
+        
+        menuBar.add(fileMenu);
+        menuBar.add(MovieTypeMenu);
+        
+        ImageIcon Icon = new ImageIcon("Movie.jpg");
+        label1.setIcon(Icon);
+    }
+
+    private static class ExitListener implements ActionListener {
+
+        public ExitListener() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+    }
+    
+     private class disPlay implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String type=e.getActionCommand();
+           
+           Display display=new Display(type,email,user_name);
+           display.setVisible(true);
+           dispose();
+        
+        }  
+    }
+      private class BuyPage implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           Buy buy=new Buy(email,user_name);
+           buy.setVisible(true);
+           dispose();
+        
+        }
+
+       
+    }
+    
+}

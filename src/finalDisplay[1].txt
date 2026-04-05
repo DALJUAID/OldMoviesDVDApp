@@ -1,0 +1,150 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
+
+public class Display extends JFrame{
+     JLabel images; //add images
+     JPanel imagePanel,nextPanel,prePanel,buttonPanel; //for design
+     JButton buy,home,next,previous; 
+     ImageIcon image;
+     String Movie_type;
+     int count=2;
+     final int WINDOW_WIDTH = 1000; 
+     final int WINDOW_HEIGHT = 600;
+     String Email,Username;
+     
+     public Display(String type,String email,String username){
+         this.Movie_type=type;
+         this.Email=email;
+         this.Username=username;
+        setTitle("Display");
+        setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         
+        buildPage();
+        add(nextPanel,BorderLayout.EAST);
+        add(prePanel,BorderLayout.WEST);
+        add(buttonPanel,BorderLayout.SOUTH);
+        add(imagePanel,BorderLayout.CENTER);
+     
+        setLocationRelativeTo(null); 
+        setVisible(true);
+     }
+     
+      private void buildPage() {
+          images=new JLabel();
+          next=new JButton("Next");
+          previous=new JButton("Previous");
+          imagePanel=new JPanel();
+          nextPanel=new JPanel();
+          prePanel=new JPanel();
+          buttonPanel=new JPanel();
+          buy=new JButton("            Buy            ");
+          home=new JButton("        Home        ");
+          home.addActionListener(new Home());
+          buy.setForeground(Color.WHITE);
+          buy.setBackground(Color.BLACK);
+          buy.addActionListener(new buyPage());
+          home.setForeground(Color.WHITE);
+          home.setBackground(Color.BLACK);
+         
+         
+         switch (Movie_type) {
+             case "Romantic":
+                 image = new ImageIcon("romantic1.jpg");
+                 break;
+             case "Horror":
+                 image = new ImageIcon("Horror1.jpg");
+                 break;
+             case "Comedy":
+                 image = new ImageIcon("Comedy1.jpg");
+                 break;
+             case "Action":
+                 image = new ImageIcon("Action1.jpg");
+                 break;
+             case "Cartoon":
+                 image = new ImageIcon("Cartoon1.jpg");
+                 break;
+             default:
+                 image = new ImageIcon("Arabic.jpg");
+                 break;
+         }
+          imagePanel.add(images);
+          images.setIcon(image);
+          imagePanel.add(images);
+          
+          image = new ImageIcon("next.jpg");
+          next.setIcon(image);
+          next.setForeground(Color.BLACK);
+          next.setBackground(Color.white);
+          next.addActionListener(new NextListener());
+          
+          image = new ImageIcon("pre.jpg");
+          previous.setIcon(image);
+          previous.setForeground(Color.BLACK);
+          previous.setBackground(Color.white);
+          previous.addActionListener(new PreviousListener());
+          
+          nextPanel.add(next);
+          nextPanel.setBackground(Color.WHITE);
+          prePanel.add(previous);
+          prePanel.setBackground(Color.WHITE);
+          buttonPanel.add(home);
+          buttonPanel.add(buy);
+
+       }
+      
+          private class NextListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+                if(count==0)
+                    count=1;
+               else if(count<=5){
+                     image=new ImageIcon(Movie_type+count+".jpg");
+                     images.setIcon(image);
+                     count++;
+                     
+                }
+        }
+          }
+
+    private  class PreviousListener implements ActionListener {
+
+       
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(count==6)
+                count=4;
+           
+            else if(count >=1){
+                    image=new ImageIcon(Movie_type+count+".jpg");
+                     images.setIcon(image);
+                     count--;
+                }
+        }
+    }
+
+     private  class Home implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          HomePage home=new HomePage(Username,Email);
+          home.setVisible(true);
+          dispose();
+        }
+    }
+     private  class buyPage implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           Buy buy=new Buy(Username,Email);
+           buy.setVisible(true);
+           dispose();
+        
+        }  
+    } 
+ }
